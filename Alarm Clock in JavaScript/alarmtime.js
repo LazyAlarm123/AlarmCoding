@@ -4,4 +4,4 @@ const alarmSchema = new mongoose.Schema({
   });
   
   const Alarm = mongoose.model('Alarm', alarmSchema);
-module.exports = alarmSchema;
+module.exports = Alarm;

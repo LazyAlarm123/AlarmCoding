@@ -2,12 +2,6 @@ const currentTime = document.querySelector("h1"),
 content = document.querySelector(".content"),
 selectMenu = document.querySelectorAll("select"),
 setAlarmBtn = document.querySelector("button");
-var xhr = new XMLHttpRequest();
-xhr.open("POST", yourAPI, true);
-xhr.setRequestHeader('Content-Type', 'application/json');
-xhr.send(JSON.stringify({
-    value: value
-}));
 
 
 let alarmTime, isAlarmSet,
@@ -54,12 +48,18 @@ async function setAlarm() {
       if (time.includes("Hour") || time.includes("Minute")) {
         return alert("Please, select a valid time to set Alarm!");
       }
-      alarmTime = time;
-      isAlarmSet = true;
-      content.classList.add("disable");
-      setAlarmBtn.innerText = "Clear Alarm";
-      // Save the alarm to the database
-      await Alarm.create({ time });
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", 'http://localhost:4000/api/saveAlarm', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({
+      time: time
+      }));
+      // alarmTime = time;
+      // isAlarmSet = true;
+      // content.classList.add("disable");
+      // setAlarmBtn.innerText = "Clear Alarm";
+      // // Save the alarm to the database
+      // await Alarm.create({ time });
     }
   }
   
