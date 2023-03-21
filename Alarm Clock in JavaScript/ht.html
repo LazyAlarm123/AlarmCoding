@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Alarm App</title>
+</head>
+<body>
+  <h1>Alarm App</h1>
+
+  <label for="hour">Hour:</label>
+  <input type="number" id="hour" name="hour" min="0" max="23" required>
+
+  <label for="minute">Minute:</label>
+  <input type="number" id="minute" name="minute" min="0" max="59" required>
+
+  <button id="setAlarmButton">Set Alarm</button>
+  <button id="clearAlarmButton">Clear Alarm</button>
+
+  <script>
+    const setAlarmButton = document.getElementById("setAlarmButton");
+    const clearAlarmButton = document.getElementById("clearAlarmButton");
+
+    setAlarmButton.addEventListener("click", async () => {
+      const hour = document.getElementById("hour").value;
+      const minute = document.getElementById("minute").value;
+      const response = await fetch(`/setAlarm?hour=${hour}&minute=${minute}`);
+      const message = await response.text();
+      alert(message);
+    });
+
+    clearAlarmButton.addEventListener("click", async () => {
+      const response = await fetch("/clearAlarm");
+      const message = await response.text();
+      alert(message);
+    });
+  </script>
+</body>
+</html>
