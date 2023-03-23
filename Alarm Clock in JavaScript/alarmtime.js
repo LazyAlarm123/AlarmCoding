@@ -3,5 +3,5 @@ const alarmSchema = new mongoose.Schema({
     time: String
   });
   
-  const Alarm = mongoose.model('Alarm', alarmSchema);
+const Alarm = mongoose.model('Alarm', alarmSchema);
 module.exports = Alarm;
