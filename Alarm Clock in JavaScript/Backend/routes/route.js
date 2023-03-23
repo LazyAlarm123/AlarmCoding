@@ -1,7 +1,5 @@
 let alarm = require('../schema/alarmtime');
-let statusplus = require('../schema/statusplus');
-let statusgun = require('../schema/statusgun');
-let statustun = require('../schema/statustun');
+let status = require('../schema/status');
 const express = require('express');
 const app = express();
 const router = express.Router();
@@ -33,7 +31,7 @@ router.get('/all', async (req, res) => {
 });
 router.post('/saveStatusplus', async (req, res) => {
   const status_plus = req.body.status_plus;
-  const Dataplus = new statusplus({ status_plus: status_plus });
+  const Dataplus = new status({ status_plus: status_plus });
   await Dataplus.save()
     .then((res) => console.log('added'))
     .catch((err) => console.log(err));
@@ -43,7 +41,7 @@ module.exports = router;
 
 router.post('/saveStatusgun', async (req, res) => {
   const status_gun = req.body.status_gun;
-  const Datagun = new statusgun({ status_gun: status_gun });
+  const Datagun = new status({ status_gun: status_gun });
   await Datagun.save()
     .then((res) => console.log('addee'))
     .catch((err) => console.log(err));
@@ -53,7 +51,7 @@ module.exports = router;
 
 router.post('/saveStatustun', async (req, res) => {
   const status_tun = req.body.status_tun;
-  const Datatun = new statustun({ status_tun: status_tun });
+  const Datatun = new status({ status_tun: status_tun });
   await Datatun.save()
     .then((res) => console.log('added'))
     .catch((err) => console.log(err));
