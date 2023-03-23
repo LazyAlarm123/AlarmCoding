@@ -36,11 +36,13 @@ setInterval(() => {
 
 async function newElement() {
   list.innerHTML = '';
-  let Data=await fetch('http://localhost:4000/api/all')
-  .then((response) => response.json())
+  let Data = await fetch('http://localhost:4000/api/all').then((response) =>
+    response.json()
+  );
   console.log(Data.length);
-  if (Data.length===0){
-    return; }
+  if (Data.length === 0) {
+    return;
+  }
   console.log(typeof Data);
   for (data of Data) {
     var div = document.createElement('div');
@@ -56,20 +58,22 @@ async function newElement() {
     var button = document.createElement('BUTTON');
     var txt = document.createTextNode('\u00D7');
     button.className = 'close';
-    button.value = `${data.id}`;
+    button.value = `${data._id}`;
     button.appendChild(txt);
     div.appendChild(button);
     button.addEventListener('click', async function (event) {
       const clickedElem = event.target; // This is the element that fired the click.
       if (clickedElem.classList.contains('close')) {
         const index = clickedElem.value; // The index in the array.
-    await  fetch(`http://localhost:4000/api/del/${index}`, { method: 'DELETE' })
-    .then(() => console.log('deleted'));
+        // console.log(index);
+        await fetch(`http://localhost:4000/api/del/${index}`, {
+          method: 'DELETE',
+        }).then(() => console.log('deleted'));
         newElement();
       }
     });
-  console.log(data);
-  };
+    console.log(data);
+  }
   console.log(Data[0].time);
 }
 
