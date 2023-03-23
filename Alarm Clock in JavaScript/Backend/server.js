@@ -27,7 +27,6 @@ db.on('error', (err) => {
   console.log('Connection Error: ' + err);
 });
 app.get('/', function (req, res) {
-  // #swagger.ignore = true
   res.redirect('/');
 });
 app.use('/api', alarmtime);
